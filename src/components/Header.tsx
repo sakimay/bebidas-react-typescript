@@ -7,30 +7,34 @@ export default function Header() {
     console.log(isHome);
 
     return (
-        <header className="bg-slate-800">
+        <header className={isHome
+            ? "bg-header bg-center bg-cover"
+            : "bg-slate-800"}>
             <div className="mx-auto container px-5 py-16">
                 <div className="flex justify-between items-center">
-                    <img src="./logo.svg" alt="" className="w-32" />
-                </div>
-                <nav className="flex gap-4">
-                    <NavLink
-                        to="/"
-                        className={({ isActive }) =>
-                            isActive
-                                ? 'text-orange-500 uppercase font-bold'
-                                : 'text-white uppercase font-bold'
-                        }
-                    >Inicio</NavLink>
-                    <NavLink
-                        to="/favoritos"
-                        className={({ isActive }) =>
-                            isActive
-                                ? 'text-orange-500 uppercase font-bold'
-                                : 'text-white uppercase font-bold'
-                        }
-                    >Favoritos</NavLink>
-                </nav>
+                    <div>
+                        <img src="./logo.svg" alt="" className="w-32" />
+                    </div>
 
+                    <nav className="flex gap-4">
+                        <NavLink
+                            to="/"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? 'text-orange-500 uppercase font-bold'
+                                    : 'text-white uppercase font-bold'
+                            }
+                        >Inicio</NavLink>
+                        <NavLink
+                            to="/favoritos"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? 'text-orange-500 uppercase font-bold'
+                                    : 'text-white uppercase font-bold'
+                            }
+                        >Favoritos</NavLink>
+                    </nav>
+                </div>
                 {isHome && (
                     <form className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
                         <div className="space-y-4">
@@ -41,7 +45,7 @@ export default function Header() {
                             <input
                                 id="ingredient"
                                 type="ingredient"
-                                className="bg-white p-3 w-full rounded-lg focus:outline-none"
+                                className="bg-white p-3 w-full rounded-lg focus:outline-hidden"
                                 placeholder="Vodka, tequila, café..."
                             />
                         </div>
@@ -53,7 +57,7 @@ export default function Header() {
                             <select
                                 name="category"
                                 id="category"
-                                className="bg-white p-3 w-full rounded-lg focus:outline-none"
+                                className="bg-white p-3 w-full rounded-lg focus:outline-hidden"
                             >
                                 <option value="">-- Seleccionar --</option>
                             </select>
@@ -64,6 +68,7 @@ export default function Header() {
                             className="bg-orange-800 p-3 w-full rounded-lg uppercase font-extrabold text-lg hover:cursor-pointer text-white" />
                     </form>
                 )}
+
             </div>
         </header>
     )
