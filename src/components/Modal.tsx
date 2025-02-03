@@ -7,6 +7,9 @@ export default function Modal() {
   const modal = useAppStore((state) => state.modal)
   const closeModal = useAppStore((state) => state.closeModal)
   const selectedRecipie = useAppStore((state) => state.selectedRecipie)
+  const handleClickFavourite = useAppStore((state) => state.handleClickFavourite)
+  const favouriteExist = useAppStore((state) => state.favouriteExist)
+
 
   const renderIngredients = () => {
     const ingredients: JSX.Element[] = []
@@ -17,7 +20,7 @@ export default function Modal() {
       if (ingredient && measure) {
         ingredients.push(
           <li key={i} className='text-lg font-normal'>
-            {ingredient} - {measure} 
+            {ingredient} - {measure}
           </li>
         )
       }
@@ -68,6 +71,21 @@ export default function Modal() {
                     Instrucciones
                   </Dialog.Title>
                   <p className='text-lg'>{selectedRecipie.strInstructions}</p>
+                  <div className='mt-5 flex justify-between gap-4'>
+
+                    <button
+                      type='button'
+                      className='w-full rounded bg-gray-600 p-3 font-bold text-white shadow uppercase hover:bg-gray-500 cursor-pointer'
+                      onClick={closeModal}
+                    >Cerrar</button>
+
+                    <button
+                      type='button'
+                      className='w-full rounded bg-orange-600 p-3 font-bold text-white shadow uppercase hover:bg-orange-500 cursor-pointer'
+                      onClick={() => handleClickFavourite(selectedRecipie)}
+                    >{favouriteExist(selectedRecipie.idDrink) ? 'Eliminar de favoritos' : 'Añadir a Favoritos'}</button>
+
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
